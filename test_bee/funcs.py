@@ -93,42 +93,33 @@ def crop_scale(image_path):
     _, binary_cropped_image = cv2.threshold(gray, 10, 255, cv2.THRESH_BINARY)
     cv2.imwrite("./scale_bar/cropped_scale.jpg", binary_cropped_image)
 
-def get_pixel_size_mm(image_path):
-    img = Image.open(image_path)
-    num = int(pytesseract.image_to_string(img, config= 'digits'))
-    print(f"The unit number is {num}")
 
-    scale_img = cv2.imread(image_path)
-    scale_gray = cv2.cvtColor(scale_img, cv2.COLOR_BGR2GRAY)
-    contours, _ = cv2.findContours(scale_gray, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    img_area = scale_img.shape[0] * scale_img.shape[1]
 
-    max_area = 0
-    for contour in contours:
-        area = cv2.contourArea(contour)
-        if area > max_area and area < 0.95*img_area:
-            max_area = area
-            largest_contour = contour
-
-    # Find the bounding box of the largest contour
-    # w is the width of scale bar
-    x,y,w,h = cv2.boundingRect(largest_contour)
-    print(f"Width of the rectangle in pixels: {w}")
-    print(f"The pixel size is {round(num/w, 6)} pixel per mm")
-
-    return round(num/w, 6)
-
-def get_pixel_size_mm_test(image_path, min_aspect_ratio = 40, extension = 300):
+def get_pixel_size_mm_test(image_path, min_aspect_ratio = 40, extension = 300,
+                           color = 'b'):
+    if color not in ['b', 'w']:
+        raise ValueError('Invalid input: scale bar color should be "b" or "w"')
     img = cv2.imread(image_path)
 
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, mask = cv2.threshold(gray, 10, 255, cv2.THRESH_BINARY)
-    mask_inv = cv2.bitwise_not(mask)
-    bg = np.full_like(img, 255)
-    fg = cv2.bitwise_and(bg, bg, mask=mask_inv)
-    gray = cv2.cvtColor(fg, cv2.COLOR_BGR2GRAY)
-    _, binary_image = cv2.threshold(gray, 10, 255, cv2.THRESH_BINARY)    
+    if color == 'b':
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        _, mask = cv2.threshold(gray, 10, 255, cv2.THRESH_BINARY)
+        mask_inv = cv2.bitwise_not(mask)
+        bg = np.full_like(img, 255)
+        fg = cv2.bitwise_and(bg, bg, mask=mask_inv)
+        gray = cv2.cvtColor(fg, cv2.COLOR_BGR2GRAY)
+        _, binary_image = cv2.threshold(gray, 10, 255, cv2.THRESH_BINARY)    
 
+    else:
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        mask = cv2.threshold(gray, 245, 255, cv2.THRESH_BINARY)[1]
+        mask_inv = cv2.bitwise_not(mask)
+        bg = np.full_like(img, 255)
+        fg = cv2.bitwise_and(img, bg, mask=mask_inv)
+        gray_fg = cv2.cvtColor(fg, cv2.COLOR_BGR2GRAY)
+        binary_image = cv2.threshold(gray_fg, 10, 255, cv2.THRESH_BINARY)[1]
+        binary_image = cv2.bitwise_not(binary_image)
+        
     # test
     # cv2.namedWindow("binary", cv2.WINDOW_NORMAL)
     # cv2.imshow("binary", binary_image)
@@ -136,9 +127,6 @@ def get_pixel_size_mm_test(image_path, min_aspect_ratio = 40, extension = 300):
     # cv2.destroyAllWindows()
 
     contours, _ = cv2.findContours(binary_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    # width = 1
-    # num = 0
 
 
     for contour in contours:
@@ -159,7 +147,6 @@ def get_pixel_size_mm_test(image_path, min_aspect_ratio = 40, extension = 300):
                 img_rect = cv2.rectangle(img.copy(), (x, 0), (x+w+5, y_fixed), (0, 255, 0), 5)
             
             else:
-                print(y_new)
                 img_rect = cv2.rectangle(img.copy(), (x, y_new), (x+w+5, y_fixed), (0, 255, 0), 5)
 
             # test cropped area

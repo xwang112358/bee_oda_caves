@@ -1,2 +1,0 @@
-include tests/* data/* docs/* examples/*
-exclude *desktop.ini

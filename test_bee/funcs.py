@@ -6,6 +6,7 @@ import re
 import matplotlib.pyplot as plt
 import math
 from scipy.integrate import quad
+import os
 
 # set path to tesseract.exe
 path_to_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
@@ -171,7 +172,7 @@ def get_pixel_size_mm_test(image_path, min_aspect_ratio = 40, extension = 300,
                 rect_aspect_ratio = float(w)/h
                 if rect_aspect_ratio > min_aspect_ratio:
 
-                    print("the unit is", num)
+                    print(f"The scale bar length is {num} mm")
                     print(f"Width of the rectangle in pixels: {w}")
                     print(f"The pixel size is {round(num/w, 6)}")
     
@@ -337,3 +338,11 @@ def ls_circle(xx,yy):
    R=np.sqrt(4*A + B*B + C*C)/(2*A)
    if R < 0.0: R = -R
    return (xofs,yofs,R)
+
+
+def get_image_names(folder_path, keyword):
+    image_names = []
+    for file_name in os.listdir(folder_path):
+        if file_name.endswith(('.jpg', '.jpeg', '.png', '.gif')) and keyword.lower() in file_name.lower():
+            image_names.append(file_name)
+    return image_names

@@ -342,7 +342,34 @@ def ls_circle(xx,yy):
 
 def get_image_names(folder_path, keyword):
     image_names = []
+    ratio_list = []
     for file_name in os.listdir(folder_path):
         if file_name.endswith(('.jpg', '.jpeg', '.png', '.gif')) and keyword.lower() in file_name.lower():
             image_names.append(file_name)
-    return image_names
+
+    for img_name in image_names:
+        zoom_ratio = img_name.split("_")[1]
+        ratio_list.append(int(zoom_ratio[:-1]))
+
+    max_zoom_index = ratio_list.index(max(ratio_list))
+
+    return image_names[max_zoom_index]
+
+
+
+
+def find_x2(arc_length, x1, integrand):
+    # Integrate the integrand over the interval from x1 to x2 to get the arc length
+    # Initialize x2 to be x1
+    x2 = x1  
+    arc_length_temp = 0.0
+    
+    while arc_length_temp < arc_length:
+        x2 += 1 
+        arc_length_temp, _ = quad(integrand, x1, x2)
+        
+    while arc_length_temp > arc_length:
+        x2 -= 0.005
+        arc_length_temp, _ = quad(integrand, x1, x2)
+            
+    return x2

@@ -23,32 +23,22 @@ print("Sex:", sex)
 # get image path from the folder
 keyword = input("Study 'hef' or 'hal' image: ")
 
-image_names = get_image_names(img_folder_path,keyword)
-#print(image_names)
+image_names = get_image_names(img_folder_path, keyword)
 
-# get the image with the highest zoom ratio
-ratio_list = []
-for img_name in image_names:
-    zoom_ratio = img_name.split("_")[1]
-    ratio_list.append(int(zoom_ratio[:-1]))
-max_zoom_index = ratio_list.index(max(ratio_list))
+img_path = img_folder_path + "/" + image_names
 
-img_path = img_folder_path + "/" + image_names[max_zoom_index]
-img_info = image_names[max_zoom_index]
-#print(img_path)
-#print(img_info)
 
 # split the information
-org = img_info.split("-")[0]
-bee_id = img_info.split("-")[1].split("_")[0]
-zoom_ratio = img_info.split("_")[1]
+org = image_names.split("-")[0]
+bee_id = image_names.split("-")[1].split("_")[0]
+zoom_ratio = image_names.split("_")[1]
 
-
+# get the pixel size
 pixel_size = get_pixel_size_mm_test(img_path, color='b')
 #print(pixel_size)
 
 if pixel_size == None:
-    pixel_size = float(input("enter the pixel size"))
+    pixel_size = float(input("enter the pixel size: \n"))
 
 # manually create a polygon mask to measure ommatidia distances in that area
 image = cv2.imread(img_path)

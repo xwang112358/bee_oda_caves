@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 
 import matplotlib.pyplot as plt
+import os
 
 def show_mask(mask, ax, random_color=False):
     if random_color:
@@ -106,3 +107,20 @@ def crop_box(image_path):
     x2, y2 = seed_points[1]
 
     return np.array([x1,y1,x2,y2])
+
+
+
+def get_image_names(folder_path, keyword):
+    image_names = []
+    ratio_list = []
+    for file_name in os.listdir(folder_path):
+        if file_name.endswith(('.jpg', '.jpeg', '.png', '.gif')) and keyword.lower() in file_name.lower():
+            image_names.append(file_name)
+
+    for img_name in image_names:
+        zoom_ratio = img_name.split("_")[1]
+        ratio_list.append(int(zoom_ratio[:-1]))
+
+    max_zoom_index = ratio_list.index(max(ratio_list))
+
+    return image_names[max_zoom_index]

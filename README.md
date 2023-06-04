@@ -4,8 +4,10 @@ Visual acuity, the ability to perceive detail, is ecologically important, as it 
 
 Our codes are updated based on the open-source code provided in https://github.com/jpcurrea/ODA, which is the offcial implementation of Currea, J.P., Sondhi, Y., Kawahara, A.Y. et al. Measuring compound eye optics with microscope and microCT images. Commun Biol 6, 246 (2023).
 
-## Prerequisite  
+![Alt text](pics/visual_acuity.png)
 
+
+## Prerequisite  
 
 __Ommatidia Detection Algorithm & Contour Analysis__
 1. Please follow the installation guide in https://github.com/jpcurrea/ODA.
@@ -29,18 +31,17 @@ Here, we provide 145 bee specimens collected at UCSB Cheadle Center. Each image 
 Please download the [data](https://drive.google.com/drive/folders/1Z8RyyXIZXyFs5L62kqnhB2llLOla0NY2?usp=sharing)
 ## Pipeline 
 
-![Alt text](pipeline.png)
+![Alt text](pics/pipeline.png)
 
 ## Methodologies
 
 
-
 ### Ommatidia Diameter Measurement 
 
-![Alt text](oda.png)
+![Alt text](pics/oda.png)
 
-![Alt text](c2edaca972a2caedffecf1a0a24e756.png)
+![Alt text](pics/c2edaca972a2caedffecf1a0a24e756.png)
 
 ### Interommatidia Angles Measurement 
 
-![interommatidial](contour_analysis.png)
+![interommatidial](pics/contour_analysis.png)

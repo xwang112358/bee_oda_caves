@@ -7,7 +7,7 @@ from funcs import *
 import csv
 from analysis_tools import *
 
-bee_df = pd.read_csv("results/ucsb_bee_info.csv")
+bee_df = pd.read_csv("results/apidae.csv")
 bee_catalog_num = input("Enter the Catalog Number: \n")
 img_folder_path = "data/" + bee_catalog_num
 
@@ -42,7 +42,7 @@ if pixel_size == None:
 
 # manually create a polygon mask to measure ommatidia distances in that area
 image = cv2.imread(img_path)
-points = get_seed_points(img_path, 6)
+points = get_seed_points(img_path, 10)
 mask = np.zeros_like(image[:,:,0])
 cv2.fillPoly(mask, [points], (255, 255, 255))
 cv2.imwrite("./created_masks/poly_mask.jpg", mask)
@@ -78,4 +78,4 @@ if result_gate == 'y':
     bee_df.loc[row_index, 'sample_std_mm'] = sample_std
     bee_df.loc[row_index, 'num_ommatida_sample'] = count
 
-    bee_df.to_csv('results/ucsb_bee_info_test.csv', index=False)
+    bee_df.to_csv('results/apidae.csv', index=False)

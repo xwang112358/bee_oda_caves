@@ -28,7 +28,7 @@ We deploy the newly released Segment Anything Model to help us segment the shape
 
 Here, we provide 145 bee specimens collected at UCSB Cheadle Center. Each image was obtained by synthesizing multiple identical 6000*4000 pixel bee photos with varying focal points, allowing for the creation of high-resolution representations of different sections of the bee.
 
-Please download the [data](https://drive.google.com/drive/folders/1Z8RyyXIZXyFs5L62kqnhB2llLOla0NY2?usp=sharing)
+Please download the [data](https://drive.google.com/drive/folders/1Z8RyyXIZXyFs5L62kqnhB2llLOla0NY2?usp=sharing) and save it in the `test_bee/data` 
 ## Pipeline 
 
 ![Alt text](pics/pipeline.png)

@@ -8,9 +8,9 @@ import math
 from scipy.integrate import quad
 import os
 
-# set path to tesseract.exe
+# set path to tesseract.exe on Windows
+# may differ on different OS
 path_to_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
 pytesseract.tesseract_cmd = path_to_tesseract
 
 def get_seed_points(image_path, num_seeds):
@@ -175,6 +175,7 @@ def get_pixel_size_mm_test(image_path, min_aspect_ratio = 40, extension = 300,
                     print(f"The scale bar length is {num} mm")
                     print(f"Width of the rectangle in pixels: {w}")
                     print(f"The pixel size is {round(num/w, 6)}")
+                    print(f'press q to stop selecting points')
     
                     return round(num/w, 6)
 
@@ -340,11 +341,11 @@ def ls_circle(xx,yy):
    return (xofs,yofs,R)
 
 
-def get_image_names(folder_path, keyword):
+def get_image_names(folder_path, image_view):
     image_names = []
     ratio_list = []
     for file_name in os.listdir(folder_path):
-        if file_name.endswith(('.jpg', '.jpeg', '.png', '.gif')) and keyword.lower() in file_name.lower():
+        if file_name.endswith(('.jpg', '.jpeg', '.png', '.gif')) and image_view.lower() in file_name.lower():
             image_names.append(file_name)
 
     for img_name in image_names:
@@ -354,8 +355,6 @@ def get_image_names(folder_path, keyword):
     max_zoom_index = ratio_list.index(max(ratio_list))
 
     return image_names[max_zoom_index]
-
-
 
 
 def find_x2(arc_length, x1, integrand):

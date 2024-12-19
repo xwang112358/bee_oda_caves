@@ -8,21 +8,41 @@ Our codes are updated based on the open-source code provided in https://github.c
 
 
 ## Prerequisite  
-
 __Ommatidia Detection Algorithm & Contour Analysis__
-1. Please follow the installation guide in https://github.com/jpcurrea/ODA.
-2. Manually download __pytesseract__ package based on your machine types for scale bar detection 
+
+```
+conda create --name bee_oda python=3.9
+```
+```
+conda activate bee_oda
+```
+```
+pip install -r requirements.txt
+```
 
 
 __Segment Anything(SAM)__
-We deploy the newly released Segment Anything Model to help us segment the shape of bee's eyes with simple prompts, such as bounding box and points. We require a GPU with at least 8GB memory when making inferences with the SAM model. Cuda and following python packages are required to run `SAM/segment_eyes.ipynb`:
 
-1. download [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive)
-2. open the terminal and type `nvcc -V` to check if CUDA runs successfuly 
-3. create a new conda environmet `conda create -n SAM python==3.8`
-4. activate the environment: `conda activate SAM`
-5. download [PyTorch](https://pytorch.org/get-started/locally/) with pip commmand provided
-6. download the [SAM checkpoint](https://github.com/facebookresearch/segment-anything#model-checkpoints) and save it in `test_bee/SAM` folder
+```
+conda create -n sam_inf python==3.8
+```
+```
+conda activate sam_inf
+```
+
+We deploy the newly released Segment Anything Model to help us segment the shape of bee's eyes with simple prompts, such as bounding box and points. It require a GPU with at least 8GB memory when making inferences with the SAM model. The code requires `python>=3.8, pytorch>=1.7` and `torchvision>=0.8`. Here is an example of setting up the SAM environment:
+
+```
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
+```
+
+```
+pip install -r test_bee/SAM/requirement.txt
+```
+
+
+- Download the [sam_vit_h_4b8939.pth](https://github.com/facebookresearch/segment-anything#model-checkpoints) and save it in `test_bee/SAM` folder
+- Run `./test_bee/SAM/segment_eyes.ipynb` to segment the eyes and save the eye masks for further processing.
 
 ## Data 
 

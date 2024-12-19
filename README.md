@@ -4,7 +4,7 @@ Visual acuity, the ability to perceive detail, is ecologically important, as it 
 
 Our codes are updated based on the open-source code provided in https://github.com/jpcurrea/ODA, which is the offcial implementation of Currea, J.P., Sondhi, Y., Kawahara, A.Y. et al. Measuring compound eye optics with microscope and microCT images. Commun Biol 6, 246 (2023).
 
-![Alt text](pics/visual_acuity.png)
+![Alt text](pics/visual_acuity.png){width=50%}
 
 
 ## Prerequisite  

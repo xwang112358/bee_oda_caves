@@ -67,6 +67,7 @@ cd test_bee
 2. Derive eye mask via SAM
    - run `./test_bee/SAM/segment_eyes.ipynb` to segment the eyes and save the eye masks for further processing.
 3. Run `./test_bee/contour_analysis.ipynb` to analyze the eye masks and calculate the interommatidial angles.
+4. The results are saved in `results/` folder.
 
 
 

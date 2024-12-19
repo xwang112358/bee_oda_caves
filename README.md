@@ -55,6 +55,22 @@ Please download the [data](https://drive.google.com/drive/folders/1Z8RyyXIZXyFs5
 
 ![Alt text](pics/pipeline.png)
 
+```
+cd test_bee
+```
+1. Detect ommatidia and sample diameters 
+   ```
+   python ommatidia_diam.py
+   ```
+   - input: the catalog number of the bee, hef or hal
+   - output: the diameter of the ommatidia
+2. Derive eye mask via SAM
+   - run `./test_bee/SAM/segment_eyes.ipynb` to segment the eyes and save the eye masks for further processing.
+3. Run `./test_bee/contour_analysis.ipynb` to analyze the eye masks and calculate the interommatidial angles.
+
+
+
+
 ## Methodologies
 
 

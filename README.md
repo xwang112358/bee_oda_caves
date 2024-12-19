@@ -23,7 +23,7 @@ conda activate bee_oda
 ```
 pip install -r requirements.txt
 ```
-
+We use `pytesseract==0.3.9` to analyze the scale bar. Please refer to this [page](https://github.com/h/pytesseract) for installation details and change this [line](https://github.com/xwang112358/bee_oda_caves/blob/24cd37c887c68cfc14238506414d311b841d7805/test_bee/funcs.py#L13) based on your OS.
 
 __Segment Anything(SAM)__
 

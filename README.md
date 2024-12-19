@@ -81,7 +81,7 @@ cd test_bee
 
 ![Alt text](pics/oda.png)
 
-![Alt text](pics/c2edaca972a2caedffecf1a0a24e756.png)
+<!-- ![Alt text](pics/c2edaca972a2caedffecf1a0a24e756.png) -->
 
 ### Interommatidia Angles Measurement 
 

@@ -1,2 +1,2 @@
-catalogNumber,Family,scientificName,sex,sample_diameter_mm,sample_std_mm,num_ommatida_sample
-UCSB-IZC00035539,Apidae,Anthophora flavocincta,female,0.0249,0.0018,97
+catalogNumber,Family,scientificName,sex,sample_diameter_mm,sample_std_mm,num_ommatida_sample,cpd_mean,cpd_mode,cpd_median
+UCSB-IZC00035539,Apidae,Anthophora flavocincta,female,0.0249,0.0018,97,0.527343,0.847247,0.536784

@@ -4,7 +4,7 @@ Visual acuity, the ability to perceive detail, is ecologically important, as it 
 
 Our codes are updated based on the open-source code provided in https://github.com/jpcurrea/ODA, which is the offcial implementation of Currea, J.P., Sondhi, Y., Kawahara, A.Y. et al. Measuring compound eye optics with microscope and microCT images. Commun Biol 6, 246 (2023).
 
-Please check our results in our [poster](https://drive.google.com/file/d/1dHefRI1GciaKh3SUBYR7Q6dD6lm6rBu3/view?usp=sharing).
+Please check our results in our [poster](https://docs.google.com/presentation/d/15mhmS1tNokRFTDW90dSTaatf0L2uq_Fw_s_0KacIg5M/edit?usp=sharing).
 
 <div align="center">
   <img src="pics/visual_acuity.png" width="50%">
@@ -24,6 +24,8 @@ conda activate bee_oda
 pip install -r requirements.txt
 ```
 We use `pytesseract==0.3.9` to analyze the scale bar. Please refer to this [page](https://github.com/h/pytesseract) for installation details and change this [line](https://github.com/xwang112358/bee_oda_caves/blob/24cd37c887c68cfc14238506414d311b841d7805/test_bee/funcs.py#L13) based on your OS.
+
+Also, remember to download related packages for running jupyter notebook with these conda environments.
 
 __Segment Anything(SAM)__
 
@@ -64,8 +66,10 @@ cd test_bee
    ```
    python ommatidia_diam.py
    ```
-   - input: the catalog number of the bee, hef or hal
-   - output: the diameter of the ommatidia
+   - input the catalog number of the bee, hef or hal
+   - a window will pop up to select the sampling area on bee's eye
+   - you can manually adjust the position of detected ommatidia on pop-up UI
+   - output and save the distribution of ommatidia diameter in the selected area
 2. Derive eye mask via SAM
    - run `./test_bee/SAM/segment_eyes.ipynb` to segment the eyes and save the eye masks for further processing.
 3. Run `./test_bee/contour_analysis.ipynb` to analyze the eye masks and calculate the interommatidial angles.

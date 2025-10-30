@@ -83,7 +83,9 @@ cd test_bee
 
 ### Ommatidia Diameter Measurement 
 
-![Alt text](pics/oda.png)
+![Alt text](pics/sam.png)
+
+![](pics/oda.png)
 
 <!-- ![Alt text](pics/c2edaca972a2caedffecf1a0a24e756.png) -->
 

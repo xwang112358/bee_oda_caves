@@ -83,12 +83,11 @@ cd test_bee
 
 ### Ommatidia Diameter Measurement 
 
-![Alt text](pics/sam.png)
 
 ![](pics/oda.png)
 
 <!-- ![Alt text](pics/c2edaca972a2caedffecf1a0a24e756.png) -->
 
 ### Interommatidia Angles Measurement 
-
+![Alt text](pics/sam.png)
 ![interommatidial](pics/contour_analysis.png)
